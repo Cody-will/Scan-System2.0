@@ -2,32 +2,58 @@ import customtkinter as ctk
 import functionality as func
 
 root = ctk.CTk()
+root.geometry('800x600')
+root.title('Scan System')
 
 ctk.set_appearance_mode("Dark")
 
-inputFrame = ctk.CTkFrame(root)
-inputFrame.pack(padx=5, pady=5)
+mainPage = ctk.CTkTabview(root)
+mainPage.pack(fill="both")
 
-scanPassLabel = ctk.CTkLabel(inputFrame, text="Scan Pass")
-scanPassLabel.pack()
+'''Creates the pages for the tabview'''
 
-scanPassEntry = ctk.CTkEntry(inputFrame)
-scanPassEntry.pack(padx=5, pady=5)
+home = mainPage.add("Home")
+search = mainPage.add("Search")
+addNew = mainPage.add("Add")
 
-scanBadgeLabel = ctk.CTkLabel(inputFrame, text="Scan Badge")
-scanBadgeLabel.pack()
+'''Main home page frame'''
 
-scanBadgeEntry = ctk.CTkEntry(inputFrame)
-scanBadgeEntry.pack(padx=5, pady=5)
+scanPassEntry = ctk.CTkEntry(mainPage.tab('Home'), placeholder_text='Scan Pass')
+scanPassEntry.pack(padx=10, pady=(15, 0))
 
-checkedInList = ctk.CTkScrollableFrame(root)
-checkedInList.pack()
+scanBadgeEntry = ctk.CTkEntry(mainPage.tab('Home'), placeholder_text='Scan Badge')
+scanBadgeEntry.pack(padx=10, pady=10)
 
-addButton = ctk.CTkButton(root, text="Add")
-addButton.pack(padx=5, pady=5)
+checkedIn = ctk.CTkScrollableFrame(mainPage.tab('Home'))
+checkedIn.pack(padx=0, pady=5, fill="both")
 
-searchButton = ctk.CTkButton(root, text="Search")
-searchButton.pack(padx=5, pady=5)
+'''Search page frame'''
+
+searchByLabel = ctk.CTkLabel(mainPage.tab('Search'), text="Select Option")
+searchByLabel.pack(padx=5, pady=(15, 0))
+
+searchBy = ctk.CTkComboBox(mainPage.tab('Search'), values=['Name', 'Pass Number', 'Associate Number'])
+searchBy.pack(padx=5, pady=(0, 10))
+
+searchData = ctk.CTkEntry(mainPage.tab("Search"))
+searchData.pack(padx=5, pady=10)
+
+searchButton = ctk.CTkButton(mainPage.tab('Search'), text='Search')
+searchButton.pack(padx=5, pady=10)
+
+resultsFrame = ctk.CTkScrollableFrame(mainPage.tab('Search'))
+resultsFrame.pack(padx=5, pady=10, fill='both')
+
+'''Add frame. Frame for adding new people or property to the database to give them the ability to be checked in'''
+
+nameLabel = ctk.CTkLabel(mainPage.tab('Add'), text='Name')
+nameLabel.pack(padx=5, pady=5)
+
+nameInput = ctk.CTkEntry(mainPage.tab('Add'), placeholder_text='Name')
+nameInput.pack(padx=10, pady=10)
+
+
+
 
 if __name__ == '__main__':
     root.mainloop()

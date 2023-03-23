@@ -1,1 +1,10 @@
-import dbCalls as db
+import random
+
+names = ['Kathy', 'Cody', 'Sophia']
+
+checkedin = []
+
+
+def thisIsAFunction():
+    pass
+
