@@ -1,5 +1,4 @@
 import customtkinter as ctk
-from home import HomePage
 from tabview import Tabview
 
 
